@@ -18,7 +18,7 @@ sudo su - gpadmin
 
 cd /tmp
 
-wget https://github.com/azarmike/TPC-DS/blob/2e2b327c81a469c452e5bc729800233dc75be326/tpcds.sh
+wget https://github.com/azarmike/TPC-DS/blob/master/tpcds.sh
 
 chmod 755 tpcds.sh
 
