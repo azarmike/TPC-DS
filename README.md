@@ -32,8 +32,6 @@ sudo su -
 
 cd /tmp
 
-rm -rif /arenadata/
-
 bash ./tpcds.sh
 
 vi ./tpcds_variables.sh
