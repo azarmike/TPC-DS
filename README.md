@@ -1,4 +1,4 @@
-# TPC-DS for Ubuntu 22
+# TPC-DS Greenplum for Ubuntu 22
 
 --Требуется gcc9
 
