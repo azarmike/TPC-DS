@@ -29,7 +29,7 @@ check_variables()
 	fi
 	local count=$(grep "REPO_BRANCH=" $MYVAR | wc -l)
 	if [ "$count" -eq "0" ]; then
-		echo "REPO_BRANCH=\"main\"" >> $MYVAR
+		echo "REPO_BRANCH=\"master\"" >> $MYVAR
 		new_variable=$(($new_variable + 1))
 	fi
 	local count=$(grep "ADMIN_USER=" $MYVAR | wc -l)
