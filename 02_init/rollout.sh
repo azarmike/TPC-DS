@@ -175,7 +175,6 @@ if [[ "$VERSION" == *"gpdb_6"* ]]; then
 	set_cpu_rate_limit
 	set_memory_shared_quota
 	set_memory_spill_ratio
-fi
 elif  [[ "$VERSION" == *"gpdb_7"* ]]; then
 	set_segment_bashrc
 	check_gucs
