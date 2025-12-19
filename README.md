@@ -37,3 +37,11 @@ bash ./tpcds.sh
 vi ./tpcds_variables.sh
 
 bash ./tpcds.sh
+
+--Для GreenGage 7 нужно дополнительно сыполнить на мастере и сегментах:
+
+mkdir -p /usr/lib/gpdb/
+
+chown gpadmin:gpadmin /usr/lib/gpdb/
+
+ln /usr/lib/ggdb/greengage_path.sh /usr/lib/gpdb/greenplum_path.sh
