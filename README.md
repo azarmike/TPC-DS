@@ -1,4 +1,4 @@
-# TPC-DS for Greenplum 6 and GreenGage 7 on Ubuntu 22
+# TPC-DS for GreenGage 6 and 7 on Ubuntu 22
 
 --Запускать на мастере, требуется gcc9
 
@@ -45,3 +45,9 @@ sudo mkdir -p /usr/lib/gpdb/
 sudo chown gpadmin:gpadmin /usr/lib/gpdb/
 
 sudo ln /usr/lib/ggdb/greengage_path.sh /usr/lib/gpdb/greenplum_path.sh
+
+sudo mkdir -p /usr/lib/gpdb/bin
+
+sudo chown gpadmin:gpadmin /usr/lib/gpdb/bin
+
+sudo ln /usr/lib/ggdb/bin/gpfdist /usr/lib/gpdb/bin/gpfdist
