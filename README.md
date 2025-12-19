@@ -40,8 +40,8 @@ bash ./tpcds.sh
 
 --Для GreenGage 7 нужно дополнительно выполнить на мастере и сегментах:
 
-mkdir -p /usr/lib/gpdb/
+sudo mkdir -p /usr/lib/gpdb/
 
-chown gpadmin:gpadmin /usr/lib/gpdb/
+sudo chown gpadmin:gpadmin /usr/lib/gpdb/
 
-ln /usr/lib/ggdb/greengage_path.sh /usr/lib/gpdb/greenplum_path.sh
+sudo ln /usr/lib/ggdb/greengage_path.sh /usr/lib/gpdb/greenplum_path.sh
