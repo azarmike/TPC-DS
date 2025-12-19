@@ -51,6 +51,17 @@ start_gpfdist()
 			ssh -n -f $EXT_HOST "bash -c 'cd ~/; ./start_gpfdist.sh $PORT $GEN_DATA_PATH'"
 			sleep 1
 		done
+	elif [ "$VERSION" == "gpdb_7" ]; then
+		for i in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "select rank() over(partition by g.hostname order by g.datadir), g.hostname, g.datadir from gp_segment_configuration g where g.content >= 0 and g.role = 'p' order by g.hostname"); do
+			CHILD=$(echo $i | awk -F '|' '{print $1}')
+			EXT_HOST=$(echo $i | awk -F '|' '{print $2}')
+			GEN_DATA_PATH=$(echo $i | awk -F '|' '{print $3}')
+			GEN_DATA_PATH=$GEN_DATA_PATH/arenadata
+			PORT=$(($GPFDIST_PORT + $CHILD))
+			echo "executing on $EXT_HOST ./start_gpfdist.sh $PORT $GEN_DATA_PATH"
+			ssh -n -f $EXT_HOST "bash -c 'cd ~/; ./start_gpfdist.sh $PORT $GEN_DATA_PATH'"
+			sleep 1
+		done
 	else
 		for i in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "select rank() over (partition by g.hostname order by p.fselocation), g.hostname, p.fselocation as path from gp_segment_configuration g join pg_filespace_entry p on g.dbid = p.fsedbid join pg_tablespace t on t.spcfsoid = p.fsefsoid where g.content >= 0 and g.role = 'p' and t.spcname = 'pg_default' order by g.hostname"); do
 			CHILD=$(echo $i | awk -F '|' '{print $1}')
@@ -143,6 +154,14 @@ if [[ "$VERSION" == *"gpdb"* ]]; then
 		done
 	elif [ "$VERSION" == "gpdb_5" ]; then
 		for t in $(psql -v ON_ERROR_STOP=1 -q -t -A -c "select n.nspname, c.relname from pg_class c join pg_namespace n on c.relnamespace = n.oid join pg_partitions p on p.schemaname = n.nspname and p.tablename = c.relname where n.nspname = 'tpcds' and p.partitionrank is null and c.reltuples = 0 order by 1, 2"); do
+			schema_name=$(echo $t | awk -F '|' '{print $1}')
+			table_name=$(echo $t | awk -F '|' '{print $2}')
+			echo "Missing root stats for $schema_name.$table_name"
+			echo "psql -v ON_ERROR_STOP=1 -q -t -A -c \"ANALYZE ROOTPARTITION $schema_name.$table_name;\""
+			psql -v ON_ERROR_STOP=1 -q -t -A -c "ANALYZE ROOTPARTITION $schema_name.$table_name;"
+		done
+	elif [ "$VERSION" == "gpdb_7" ]; then
+		for t in $(psql -v ON_ERROR_STOP=1 -q -t -A -c "select n.nspname, c.relname from pg_class c join pg_namespace n on c.relnamespace = n.oid left outer join (select starelid from pg_statistic group by starelid) s on c.oid = s.starelid join (select relname from pg_stat_all_tables where relid in (select partdefid  from pg_partitioned_table)) p on p.relname = c.relname where n.nspname = 'tpcds' and s.starelid is null order by 1, 2"); do
 			schema_name=$(echo $t | awk -F '|' '{print $1}')
 			table_name=$(echo $t | awk -F '|' '{print $2}')
 			echo "Missing root stats for $schema_name.$table_name"
