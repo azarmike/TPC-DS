@@ -159,9 +159,14 @@ set_memory_spill_ratio()
 	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET memory_spill_ratio 15;"
 }
 
+set_cpu_max_percent()
+{
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET cpu_max_percent 80;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET cpu_max_percent 80;"
+}
 
 get_version
-if [[ "$VERSION" == *"gpdb"* ]]; then
+if [[ "$VERSION" == *"gpdb_6"* ]]; then
 	set_segment_bashrc
 	check_gucs
 	copy_config
@@ -170,6 +175,14 @@ if [[ "$VERSION" == *"gpdb"* ]]; then
 	set_cpu_rate_limit
 	set_memory_shared_quota
 	set_memory_spill_ratio
+fi
+elif  [[ "$VERSION" == *"gpdb_7"* ]]; then
+	set_segment_bashrc
+	check_gucs
+	copy_config
+	set_memory_limit
+	set_concurrency
+	set_cpu_max_percent
 fi
 set_search_path
 
