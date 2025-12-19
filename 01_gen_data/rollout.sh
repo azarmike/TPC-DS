@@ -65,7 +65,7 @@ gen_data()
 				echo "ssh -n -f $EXT_HOST \"bash -c 'cd ~/; ./generate_data.sh $GEN_DATA_SCALE $CHILD $PARALLEL $GEN_DATA_PATH > generate_data.$CHILD.log 2>&1 < generate_data.$CHILD.log &'\""
 				ssh -n -f $EXT_HOST "bash -c 'cd ~/; ./generate_data.sh $GEN_DATA_SCALE $CHILD $PARALLEL $GEN_DATA_PATH > generate_data.$CHILD.log 2>&1 < generate_data.$CHILD.log &'"
 			done
-		if [ "$VERSION" == "gpdb_7" ]; then
+		elif [ "$VERSION" == "gpdb_7" ]; then
 			for i in $(psql -v ON_ERROR_STOP=1 -q -A -t -c "select row_number() over(), g.hostname, g.datadir from gp_segment_configuration g where g.content >= 0 and g.role = 'p' order by 1, 2, 3"); do
 				CHILD=$(echo $i | awk -F '|' '{print $1}')
 				EXT_HOST=$(echo $i | awk -F '|' '{print $2}')
