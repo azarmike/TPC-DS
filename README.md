@@ -1,6 +1,6 @@
 # TPC-DS Greenplum for Ubuntu 22
 
---Требуется gcc9
+--Запускать на мастере, требуется gcc9
 
 sudo apt-get install git make bc g++ -y
 
