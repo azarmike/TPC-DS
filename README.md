@@ -1,4 +1,4 @@
-# TPC-DS Greenplum for Ubuntu 22
+# TPC-DS for Greenplum 6 and GreenGage 7 on Ubuntu 22
 
 --Запускать на мастере, требуется gcc9
 
