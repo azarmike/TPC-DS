@@ -42,7 +42,7 @@ source_bashrc()
 		if [ -f "$profile_filename" ]; then
 			# don't fail if an error is happening in the admin's profile
 			source "$profile_filename" || true
-			count=$((count+$(grep -v "^#" "$profile_filename" | grep -e "greenplum_path|greengage_path" | wc -l)))
+			count=$((count+$(grep -v "^#" "$profile_filename" | grep -E "greenplum_path|greengage_path" | wc -l)))
 		fi
 	done
 	if [ "$count" -eq "0" ]; then
