@@ -38,7 +38,7 @@ vi ./tpcds_variables.sh
 
 bash ./tpcds.sh
 
---Для GreenGage 7 нужно дополнительно сыполнить на мастере и сегментах:
+--Для GreenGage 7 нужно дополнительно выполнить на мастере и сегментах:
 
 mkdir -p /usr/lib/gpdb/
 
