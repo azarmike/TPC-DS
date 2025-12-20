@@ -161,8 +161,8 @@ set_memory_spill_ratio()
 
 set_cpu_max_percent()
 {
-	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET cpu_max_percent 80;\""
-	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET cpu_max_percent 80;"
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET cpu_max_percent 90;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET cpu_max_percent 90;"
 }
 
 get_version
