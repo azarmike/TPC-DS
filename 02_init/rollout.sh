@@ -131,8 +131,8 @@ set_search_path()
 #luka added set_memory_limit because with EVERY=1 too much partitions caused Canceling query 020.gpdb.web_returns.sql because of high VMEM usage
 set_memory_limit()
 {
-	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT -1;\""
-	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT -1;"
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT 80;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT 80;"
 }
 
 set_concurrency()
@@ -165,6 +165,12 @@ set_cpu_max_percent()
 	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET cpu_max_percent -1;"
 }
 
+set_memory_limit7()
+{
+	echo "psql -v ON_ERROR_STOP=1 -q -A -t -c \"ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT -1;\""
+	psql -v ON_ERROR_STOP=1 -q -A -t -c "ALTER RESOURCE GROUP admin_group SET MEMORY_LIMIT -1;"
+}
+
 get_version
 if [[ "$VERSION" == *"gpdb_6"* ]]; then
 	set_segment_bashrc
@@ -179,7 +185,7 @@ elif  [[ "$VERSION" == *"gpdb_7"* ]]; then
 	set_segment_bashrc
 	check_gucs
 	copy_config
-	set_memory_limit
+	set_memory_limit7
 	set_concurrency
 	set_cpu_max_percent
 fi
