@@ -1,6 +1,6 @@
 # TPC-DS for GreenGage 6 and 7 on Ubuntu22 and AltLinux10
 
-########## Запуск на Ubuntu22. Запускать на мастере, требуется gcc9:
+########## Запуск на Ubuntu22, запускать на мастере, требуется gcc9:
 
 sudo apt-get install git make bc g++ -y
 
@@ -12,7 +12,7 @@ sudo ln /usr/bin/gcc-9 /usr/bin/gcc
 
 gcc --version
 
-########## Запуск на AltLinux10. Запускать на мастере, требуется gcc9:
+########## Запуск на AltLinux10, запускать на мастере, требуется gcc9:
 
 sudo su -
 
@@ -58,7 +58,7 @@ vi ./tpcds_variables.sh
 
 bash ./tpcds.sh
 
-########## Для GreenGage 7 нужно дополнительно выполнить на мастере и сегментах:
+########## Для GreenGage 7, независимо от OS, нужно дополнительно выполнить на мастере и сегментах:
 
 sudo mkdir -p /usr/lib/gpdb/
 
