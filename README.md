@@ -1,6 +1,6 @@
-# TPC-DS for GreenGage 6 and 7 on Ubuntu 22
+# TPC-DS for GreenGage 6 and 7 on Ubuntu22 and AltLinux10
 
-########## Запускать на мастере, требуется gcc9:
+########## Запуск на Ubuntu22. Запускать на мастере, требуется gcc9:
 
 sudo apt-get install git make bc g++ -y
 
@@ -9,6 +9,26 @@ sudo apt remove gcc -y
 sudo apt-get install gcc-9 g++-9 -y
 
 sudo ln /usr/bin/gcc-9 /usr/bin/gcc
+
+gcc --version
+
+########## Запуск на AltLinux10. Запускать на мастере, требуется gcc9:
+
+sudo su -
+
+vi /etc/apt/sources.list.d/altsp.list
+
+rpm [cert8] https://mirror.yandex.ru/altlinux c10f2/branch/x86_64 classic gostcrypto
+
+rpm [cert8] https://mirror.yandex.ru/altlinux c10f2/branch/x86_64-i586 classic
+
+rpm [cert8] https://mirror.yandex.ru/altlinux c10f2/branch/noarch classic
+
+apt-get update
+
+apt-get install gcc9 git bc make -y 
+
+ln /usr/bin/gcc-9 /usr/bin/x86_64-alt-linux-gcc
 
 gcc --version
 
