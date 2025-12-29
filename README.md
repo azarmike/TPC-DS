@@ -32,7 +32,7 @@ ln /usr/bin/gcc-9 /usr/bin/x86_64-alt-linux-gcc
 
 gcc --version
 
-########## Запускаем под gpadmin:
+########## Далее независимо от OS, запускаем под gpadmin:
 
 sudo su - gpadmin
 
