@@ -32,6 +32,12 @@ ln /usr/bin/gcc-9 /usr/bin/x86_64-alt-linux-gcc
 
 gcc --version
 
+########## Запуск на AstraLinux 1.7, запускать на мастере, требуется gcc8:
+
+sudo apt-get install git make bc g++ gcc -y
+
+gcc --version
+
 ########## Далее независимо от OS, запускаем под gpadmin:
 
 sudo su - gpadmin
