@@ -1,4 +1,4 @@
-# TPC-DS for GreenGage 6 and 7 on Ubuntu22 and AltLinux10
+# TPC-DS for GreenGage 6 and 7 on Ubuntu 22, AltLinux 10 and AstraLinux 1.7
 
 ########## Запуск на Ubuntu22, запускать на мастере, требуется gcc9:
 
