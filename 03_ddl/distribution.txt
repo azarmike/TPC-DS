@@ -19,6 +19,6 @@
 19|time_dim|t_time_sk
 20|warehouse|w_warehouse_sk
 21|web_page|wp_web_page_sk
-22|web_returns|wr_order_number,wr_item_sk
+22|web_returns|wr_item_sk,wr_order_number
 23|web_sales|ws_item_sk,ws_order_number
 24|web_site|web_site_sk
