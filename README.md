@@ -2,11 +2,7 @@
 
 ########## Запуск на Ubuntu22, запускать на мастере, требуется gcc9:
 
-sudo apt-get install git make bc g++ -y
-
-sudo apt remove gcc -y
-
-sudo apt-get install gcc-9 g++-9 -y
+sudo apt-get install git make bc gcc-9 g++-9 -y
 
 sudo ln /usr/bin/gcc-9 /usr/bin/gcc
 
